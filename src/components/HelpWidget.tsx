@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ChatPannel } from "./ChatPanel";
 
 export type TMessage = {
@@ -9,6 +9,18 @@ export type TMessage = {
 
 export const HelpWidget = () => {
     const [isChatPanelDisplayed, setIsChatPanelDisplayed] = useState(false);
+    const [text, setText] = useState("");
+//   const channelRef = useRef<RtmChannel | null>(null);
+//   const helpRequestRef = useRef<HelpRequest | null>(null);
+//   const { messages, connectTo, sendMessage } = useRTM([
+//     {
+//       message: "How can I help you?",
+//       id: "1324b0asd",
+//       sender: "0",
+//     },
+//   ]);
+
+
     return isChatPanelDisplayed ? (
         <div
           className="
@@ -22,10 +34,16 @@ export const HelpWidget = () => {
             onClose={handleCloseWidget}
             handleSendMessage={handleSendMessage}
           /> */}
+          <button
+          className="hover:text-red-400d absolute top-2 right-2"
+          onClick={() => setIsChatPanelDisplayed(false)}
+        >
+          X
+        </button>
         </div>
       ) : (
         <button
-        //   onClick={handleOpenSupportWidget}
+        onClick={() => setIsChatPanelDisplayed(true)}
           className="
             fixed bottom-10 right-10 cursor-pointer bg-blue-400 p-2 px-4
             text-white hover:bg-blue-500
